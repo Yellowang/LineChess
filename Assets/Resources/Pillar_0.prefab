@@ -88,6 +88,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4785832067101852}
+  - component: {fileID: 64093105016049604}
   m_Layer: 0
   m_Name: Pillar_0
   m_TagString: Untagged
@@ -320,6 +321,20 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1210244452663470}
   m_Mesh: {fileID: 4300020, guid: bff396b47c6e54284a1a05947d673cd0, type: 3}
+--- !u!64 &64093105016049604
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1849145511171440}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 1
+  m_InflateMesh: 0
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 0}
 --- !u!135 &135867114378250092
 SphereCollider:
   m_ObjectHideFlags: 1

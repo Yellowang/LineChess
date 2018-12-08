@@ -119,4 +119,5 @@ public sealed class StartGame : MonoBehaviour {
 		player.transform.localPosition = new Vector3(-(chessSize - 1f), 0f, -(chessSize - 1f));
 		AI.transform.localPosition = new Vector3((chessSize - 1f), 0f, (chessSize - 1f));
 	}
+
 }

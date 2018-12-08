@@ -1,0 +1,30 @@
+bottom 		pos.y  = -2.75
+chessboard  	pos.y = -0.15
+
+lattice	（0，0） -5，-5  	间隔2  	共36块
+pillars	（0，0） -6，-6 	间隔2 	共49块
+
+camera 140 200 180
+
+待解决
+碰撞会抖动
+动画
+GUI
+音效
+规则说明
+胜负判定少了一步
+
+switch (direction) {
+		case "forward":
+			
+			break;
+		case "back":
+
+			break;
+		case "left":
+
+			break;
+		case "right":
+
+			break;
+		}

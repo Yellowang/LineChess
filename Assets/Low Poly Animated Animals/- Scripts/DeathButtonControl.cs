@@ -10,7 +10,7 @@ public class DeathButtonControl : MonoBehaviour {
 	void Start () {
 
 		for (int i = 0; i<countOfAnimations; i++) {
-			float width = button.GetComponent<RectTransform> ().sizeDelta.x;
+			//float width = button.GetComponent<RectTransform> ().sizeDelta.x;
 			float height = button.GetComponent<RectTransform> ().sizeDelta.y;
 			Vector2 newPosition = new Vector2 (0, 115 + ( height * i));
 				

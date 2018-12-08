@@ -8,6 +8,8 @@ TagManager:
   - Pillars
   - Pieces
   - Fences
+  - Piece_Player
+  - Piece_AI
   layers:
   - Default
   - TransparentFX
