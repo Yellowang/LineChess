@@ -46,8 +46,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\LineChess\Scripts\BackToMain.cs" />
      <Compile Include="Assets\LineChess\Scripts\ChessJudge.cs" />
+     <Compile Include="Assets\LineChess\Scripts\CreateGameEnvironment.cs" />
+     <Compile Include="Assets\LineChess\Scripts\EllipsisJump.cs" />
+     <Compile Include="Assets\LineChess\Scripts\LoadingScene.cs" />
      <Compile Include="Assets\LineChess\Scripts\PieceControl.cs" />
+     <Compile Include="Assets\LineChess\Scripts\QuitGame.cs" />
      <Compile Include="Assets\LineChess\Scripts\StartGame.cs" />
      <Compile Include="Assets\Low Poly Animated Animals\- Scripts\AnimationControl.cs" />
      <Compile Include="Assets\Low Poly Animated Animals\- Scripts\DeathButtonControl.cs" />
