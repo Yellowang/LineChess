@@ -117,7 +117,6 @@
      <None Include="Assets\ImportedResource\Low Poly Animated Animals\Standard Assets\Effects\ImageEffects\Shaders\ColorCorrectionSelective.shader" />
      <None Include="Assets\ImportedResource\Low Poly Animated Animals\Standard Assets\Effects\ImageEffects\Shaders\_DepthOfField\Bokeh34.shader" />
      <None Include="Assets\ImportedResource\MarvelousTechniques\Shaders\WaterBox.shader" />
-     <None Include="Assets\记录.txt" />
      <None Include="Assets\ImportedResource\Low Poly Animated Animals\Standard Assets\Effects\ImageEffects\Shaders\CameraMotionBlurDX11.shader" />
      <None Include="Assets\ImportedResource\Low Poly Animated Animals\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\SeparableBlurPlus.shader" />
      <None Include="Assets\ImportedResource\Low Poly Animated Animals\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\MultiPassHollywoodFlares.shader" />
@@ -213,6 +212,12 @@
  </Reference>
  <Reference Include="UnityEditor.WindowsStandalone.Extensions">
  <HintPath>D:/Unity/Editor/Data/PlaybackEngines/windowsstandalonesupport/UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
+ </Reference>
+ <Reference Include="Mono.Data.Sqlite">
+ <HintPath>D:/Unity/Projects/EZLineChess/Assets/LineChess/Sqlite/Mono.Data.Sqlite.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Data">
+ <HintPath>D:/Unity/Projects/EZLineChess/Assets/LineChess/Sqlite/System.Data.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>

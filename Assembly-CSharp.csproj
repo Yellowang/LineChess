@@ -110,8 +110,10 @@
      <Compile Include="Assets\LineChess\Scripts\ChessJudge.cs" />
      <Compile Include="Assets\LineChess\Scripts\CreateGameEnvironment.cs" />
      <Compile Include="Assets\LineChess\Scripts\EllipsisJump.cs" />
+     <Compile Include="Assets\LineChess\Scripts\GameSettings.cs" />
      <Compile Include="Assets\LineChess\Scripts\LoadingScene.cs" />
      <Compile Include="Assets\LineChess\Scripts\PieceControl.cs" />
+     <Compile Include="Assets\LineChess\Scripts\SQLiteHelper.cs" />
      <Compile Include="Assets\LineChess\Scripts\ShowGameResult.cs" />
      <Compile Include="Assets\LineChess\Scripts\SimpleGameControl.cs" />
      <None Include="Assets\ImportedResource\Low Poly Animated Animals\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BlendOneOne.shader" />
@@ -178,7 +180,6 @@
      <None Include="Assets\ImportedResource\Low Poly Animated Animals\Standard Assets\Effects\ImageEffects\Shaders\ColorCorrectionSelective.shader" />
      <None Include="Assets\ImportedResource\Low Poly Animated Animals\Standard Assets\Effects\ImageEffects\Shaders\_DepthOfField\Bokeh34.shader" />
      <None Include="Assets\ImportedResource\MarvelousTechniques\Shaders\WaterBox.shader" />
-     <None Include="Assets\记录.txt" />
      <None Include="Assets\ImportedResource\Low Poly Animated Animals\Standard Assets\Effects\ImageEffects\Shaders\CameraMotionBlurDX11.shader" />
      <None Include="Assets\ImportedResource\Low Poly Animated Animals\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\SeparableBlurPlus.shader" />
      <None Include="Assets\ImportedResource\Low Poly Animated Animals\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\MultiPassHollywoodFlares.shader" />
@@ -241,6 +242,12 @@
  </Reference>
  <Reference Include="UnityEngine.VR">
  <HintPath>D:/Unity/Editor/Data/UnityExtensions/Unity/UnityVR/RuntimeEditor/UnityEngine.VR.dll</HintPath>
+ </Reference>
+ <Reference Include="Mono.Data.Sqlite">
+ <HintPath>D:/Unity/Projects/EZLineChess/Assets/LineChess/Sqlite/Mono.Data.Sqlite.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Data">
+ <HintPath>D:/Unity/Projects/EZLineChess/Assets/LineChess/Sqlite/System.Data.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

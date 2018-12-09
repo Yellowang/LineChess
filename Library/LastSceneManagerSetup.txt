@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/ChessGame.unity
+- path: Assets/StartInterface.unity
   isLoaded: 1
   isActive: 1
