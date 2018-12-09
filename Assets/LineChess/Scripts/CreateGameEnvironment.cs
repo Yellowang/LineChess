@@ -17,10 +17,12 @@ public sealed class CreateGameEnvironment : MonoBehaviour {
 		piece_AI = (GameObject)Resources.Load ("Piece_AI");
 		piece_player = (GameObject)Resources.Load ("Piece_Player");
 		pillar = Resources.Load ("Pillar_0") as GameObject;
+
+		createChess ();	// 搭建棋盘
 	}
 
 	/* 实例化各种Prefab并置于对应的位置和层级关系 */
-	public void createEnvironment() {
+	public void createChess() {
 		
 		createChessBOard ();
 		createPillars ();

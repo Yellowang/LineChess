@@ -11,7 +11,6 @@ public class PieceControl : MonoBehaviour {
 	private ChessJudge cj;
 	private int chessSize;
 	private int[,] chess;
-	private StartGame game;
 	private bool Gameover;
 
 	private float h, v;
@@ -37,7 +36,6 @@ public class PieceControl : MonoBehaviour {
 		cj = ChessJudge.getSingleInstance();
 		chessSize = cj.getChessSize();
 		chess = cj.getChess ();
-		game = new StartGame ();
 			
 		h = 0;
 		v = 0;
@@ -49,16 +47,19 @@ public class PieceControl : MonoBehaviour {
 	}
 
 	void FixedUpdate() {
-
-		if (cj.getRound() != first)	// 判断是否是自己的回合
-			return;
 		
-		if (cj.judgeGameResult ().Equals ("失败"))	// 失败动画
+		if (cj.judgeGameResult ().Equals ("失败") && first == true)	// 失败动画 
+			transform.GetComponent<AnimationControl> ().SetAnimation ("isDead");
+
+		if (cj.judgeGameResult ().Equals ("胜利") && first == false)	// 失败动画 
 			transform.GetComponent<AnimationControl> ().SetAnimation ("isDead");
 		
 		if (!cj.judgeGameResult ().Equals ("胜负未分"))	// 判断游戏是否结束
 			return;
 
+		if (cj.getRound() != first)	// 判断是否是自己的回合
+			return;
+		
 		/* 根据按键修改press字符串 */
 		if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) { h = 0; v = 1; playersMove = false; } 
 		if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)) { h = 0; v = -1; playersMove = false; }
@@ -89,7 +90,7 @@ public class PieceControl : MonoBehaviour {
 		
 			JudgeMoveConditionAndMove ();
 			Debug.Log (cj.judgeGameResult ());	// 输出胜负（相对于玩家1）
-			//cj.printChess ();	// 测试
+
 		}
 	}
 
@@ -194,7 +195,7 @@ public class PieceControl : MonoBehaviour {
 			transform.GetComponent<AnimationControl> ().SetAnimation ("isShaking");
 		else
 			transform.GetComponent<AnimationControl> ().SetAnimation ("isEating");
-		
+
 		return true;
 	}
 
