@@ -6,11 +6,11 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/StartInterface1.1.unity
+    path: Assets/StartInterface.unity
     guid: 0ac72539adbc10e4eae7b9744d744045
   - enabled: 1
     path: Assets/Loading.unity
     guid: f4ad9dc4ea8792d458c3b72f661e494a
   - enabled: 1
-    path: Assets/Chess2.0.unity
+    path: Assets/ChessGame.unity
     guid: e83fba0956897c3449c78219b0ab571d

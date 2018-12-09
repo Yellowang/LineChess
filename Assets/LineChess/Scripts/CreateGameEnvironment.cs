@@ -10,8 +10,8 @@ public sealed class CreateGameEnvironment : MonoBehaviour {
 	void Start(){
 
 		/* 加载资源 */
-		box_black = (GameObject)Resources.Load ("Box_Black");
-		box_white = (GameObject)Resources.Load ("Box_White");
+		box_black = (GameObject)Resources.Load ("Box_DarkColor");
+		box_white = (GameObject)Resources.Load ("Box_LightColor");
 		electricity_H = (GameObject)Resources.Load ("Electricity_Horizontal");
 		electricity_V = (GameObject)Resources.Load ("Electricity_Vertical");
 		piece_AI = (GameObject)Resources.Load ("Piece_AI");

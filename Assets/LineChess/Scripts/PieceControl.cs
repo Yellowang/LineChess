@@ -6,11 +6,13 @@ public class PieceControl : MonoBehaviour {
 
 	public float moveSpeed = 5.0f;		// 移动速度
 	public float rotateSpeed = 5.0f;	// 转身速率
+	public bool first = false;			// 是否先开始
 
 	private ChessJudge cj;
 	private int chessSize;
 	private int[,] chess;
 	private StartGame game;
+	private bool Gameover;
 
 	private float h, v;
 	private int x, z;	// 对应矩阵中的下标
@@ -20,19 +22,18 @@ public class PieceControl : MonoBehaviour {
 	private GameObject electricity_H;
 	private GameObject electricity_V;
 
-	/* 测试 */
+	/* 测试 
 	void OnGUI() {
 		GUI.Label(new Rect(200,50,200,500), 
 			"(h, v):\t(" + h + ", " + v + ")\n" + 
 			"能否移动:\t" + playersMove + "\n" +
-		//	"能否落子:\t" + JudgeMoveCondition() + "\n" +
 			"方向:\t" + direction + "\n" +
 			"坐标:\t(" + (Mathf.RoundToInt (transform.localPosition.x) + chessSize) + ", " + (Mathf.RoundToInt (transform.localPosition.z) + chessSize) + ")\n" +
 			"");
-	}
+	} */
 
 	void Start () {
-
+		
 		cj = ChessJudge.getSingleInstance();
 		chessSize = cj.getChessSize();
 		chess = cj.getChess ();
@@ -41,12 +42,22 @@ public class PieceControl : MonoBehaviour {
 		h = 0;
 		v = 0;
 		direction = "forward";
+		Gameover = false;
 
 		electricity_H = (GameObject)Resources.Load ("Electricity_Horizontal");
 		electricity_V = (GameObject)Resources.Load ("Electricity_Vertical");
 	}
 
 	void FixedUpdate() {
+
+		if (cj.getRound() != first)	// 判断是否是自己的回合
+			return;
+		
+		if (cj.judgeGameResult ().Equals ("失败"))	// 失败动画
+			transform.GetComponent<AnimationControl> ().SetAnimation ("isDead");
+		
+		if (!cj.judgeGameResult ().Equals ("胜负未分"))	// 判断游戏是否结束
+			return;
 
 		/* 根据按键修改press字符串 */
 		if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) { h = 0; v = 1; playersMove = false; } 
@@ -56,22 +67,28 @@ public class PieceControl : MonoBehaviour {
 			
 		if (h != 0 || v != 0) {
 			Rotating ();
+			transform.GetComponent<AnimationControl> ().SetAnimation ("isWalking");
 		}
 			
-	}
 
-	void LateUpdate() {
-
-		/* 按WSAD朝着面朝方向移动 */
-		if (playersMove && ((Input.GetKey(KeyCode.W) && v == 1) || (Input.GetKey(KeyCode.S) && v == -1)||
-			(Input.GetKey(KeyCode.A) && h == -1) || (Input.GetKey(KeyCode.D) && h == 1))) {
+		/* 按WSAD或↑↓←→朝着面朝方向移动 */
+		if (playersMove && (
+			((Input.GetKey (KeyCode.W) || Input.GetKey (KeyCode.UpArrow)) && v == 1) || 
+			((Input.GetKey (KeyCode.S) || Input.GetKey (KeyCode.DownArrow))&& v == -1) ||
+			((Input.GetKey (KeyCode.A) || Input.GetKey (KeyCode.LeftArrow))&& h == -1) || 
+			((Input.GetKey (KeyCode.D) || Input.GetKey (KeyCode.RightArrow))&& h == 1))) {
+			/* 移动并设置动画 */
 			Move ();
+			transform.GetComponent<AnimationControl> ().SetAnimation ("isWalking");
+		} else {
+			transform.GetComponent<AnimationControl> ().SetAnimationIdle();
 		}
 
 		/* 按空格键添加栅栏（落子） */
-		if (Input.GetKeyDown (KeyCode.Space)) {
-			JudgeMoveCondition ();
-			Debug.Log (cj.judgeGameResult ());
+		if (Input.GetKeyDown (KeyCode.Space) || Input.GetKeyDown (KeyCode.Return)) {
+		
+			JudgeMoveConditionAndMove ();
+			Debug.Log (cj.judgeGameResult ());	// 输出胜负（相对于玩家1）
 			//cj.printChess ();	// 测试
 		}
 	}
@@ -80,6 +97,7 @@ public class PieceControl : MonoBehaviour {
 	private void Rotating ()
 	{
 		if (!playersMove) {
+			
 			Vector3 dir = new Vector3 (h, 0, v);	// 获取方向
 			Quaternion quaDir = Quaternion.LookRotation(dir,Vector3.up);			// 将方向转换为四元数
 			transform.rotation = Quaternion.Lerp(transform.rotation, quaDir, Time.fixedDeltaTime * rotateSpeed); 		// 缓慢转动到目标点
@@ -112,12 +130,13 @@ public class PieceControl : MonoBehaviour {
 
 	/* 移动 */
 	private void Move() {
-		
+
 		transform.Translate(Vector3.forward * moveSpeed * Time.fixedDeltaTime);
+
 	}
 
-	/* 判断落子条件是否成立，需要位置合适且无栅栏 */
-	private bool JudgeMoveCondition() {
+	/* 判断落子条件是否成立，需要位置合适且无栅栏，符合条件则落子 */
+	private bool JudgeMoveConditionAndMove() {
 
 		/* 判断能否移动 */
 		if (!playersMove)
@@ -163,7 +182,19 @@ public class PieceControl : MonoBehaviour {
 			break;
 		}
 
-		cj.setPlayerPos (x, z);
+		/* 改变棋子位置 */
+		if (first)
+			cj.setPlayerPos (x, z);
+		else
+			cj.setAIPos (x, z);
+		
+		cj.nextRound ();	// 下一回合
+
+		if (transform.tag.Equals("Piece_Player"))
+			transform.GetComponent<AnimationControl> ().SetAnimation ("isShaking");
+		else
+			transform.GetComponent<AnimationControl> ().SetAnimation ("isEating");
+		
 		return true;
 	}
 

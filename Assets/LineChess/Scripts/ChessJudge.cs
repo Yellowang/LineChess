@@ -8,6 +8,7 @@ public sealed class ChessJudge
 	private int chessSize = 6;     // 棋盘大小 大小2~6
 	private int[, ] chess;
 	private int playerPosX, playerPosZ, AIPosX, AIPosZ;        // 棋子位置（数组下标）
+	private bool round;		// 每控制一次时改变真假，只有和PieceControl中的first真假相同，方可移动
 
 	/* private构造函数，并初始化属性 */
 	private ChessJudge(){
@@ -17,6 +18,7 @@ public sealed class ChessJudge
 		playerPosZ = 1;
 		AIPosX = 2 * chessSize - 1;
 		AIPosZ = 2 * chessSize - 1;
+		round = true;
 
 		/* 玩家 */
 		chess [playerPosX, playerPosZ] = 1;    // 玩家所在位置
@@ -43,7 +45,7 @@ public sealed class ChessJudge
 		return instance;
 	}
 
-	/* 判断游戏结果，胜负相对于玩家来说 */
+	/* 判断游戏结果，胜负相对于玩家1来说 */
 	public string judgeGameResult() {
 
 		/* 判断玩家是否被包围 */
@@ -98,6 +100,10 @@ public sealed class ChessJudge
 		return AIPosZ;
 	}
 
+	public bool getRound() {
+		return round;
+	}
+
 	public void setPlayerPos(int x, int z) {
 
 		chess [playerPosX, playerPosZ] = 0;
@@ -108,8 +114,22 @@ public sealed class ChessJudge
 
 	}
 
+	public void setAIPos(int x, int z) {
+
+		chess [AIPosX, AIPosZ] = 0;
+		chess [x, z] = 1;
+
+		AIPosX = x;
+		AIPosZ = z;
+
+	}
+
 	public void setFence(int x, int z) {
 		chess [x, z] = 1;
+	}
+
+	public void nextRound() {
+		round = !round;
 	}
 
 	public void printChess() {

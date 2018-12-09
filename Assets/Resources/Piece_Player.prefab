@@ -1203,6 +1203,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   rotateSpeed: 5
+  first: 1
 --- !u!136 &136019796803500366
 CapsuleCollider:
   m_ObjectHideFlags: 1

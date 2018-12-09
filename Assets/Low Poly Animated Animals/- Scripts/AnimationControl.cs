@@ -6,16 +6,16 @@ public class AnimationControl : MonoBehaviour {
 
 
 	string currentAnimation="";
-	// Use this for initialization
+
 	void Start () {
 		
 	}
 	
-	// Update is called once per frame
 	void Update () {
 
 		
 	}
+
 	public void SetAnimation(string animationName){
 		
 		if (currentAnimation != "") {
@@ -33,6 +33,7 @@ public class AnimationControl : MonoBehaviour {
 
 
 	}
+
 	public void SetDeathAnimation(int numOfClips){
 
 		int clipIndex = Random.Range(0, numOfClips);
@@ -41,19 +42,4 @@ public class AnimationControl : MonoBehaviour {
 
 		this.GetComponent<Animator> ().SetInteger (animationName, clipIndex);
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
