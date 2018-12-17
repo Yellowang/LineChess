@@ -15,6 +15,7 @@ public class PieceControl : MonoBehaviour {
 
 	private float h, v;
 	private int x, z;	// 对应矩阵中的下标
+	private int posX, posZ;
 	private bool playersMove = true;	// 判断player能否移动和落子，对方回合、转身中时不能
 	private string direction;			// 面朝的方向
 
@@ -25,6 +26,7 @@ public class PieceControl : MonoBehaviour {
 	void OnGUI() {
 		GUI.Label(new Rect(200,50,200,500), 
 			"(h, v):\t(" + h + ", " + v + ")\n" + 
+			"(x, z):\t(" + Mathf.RoundToInt (transform.localPosition.x) + ", " + Mathf.RoundToInt (transform.localPosition.z) + ")\n" + 
 			"能否移动:\t" + playersMove + "\n" +
 			"方向:\t" + direction + "\n" +
 			"坐标:\t(" + (Mathf.RoundToInt (transform.localPosition.x) + chessSize) + ", " + (Mathf.RoundToInt (transform.localPosition.z) + chessSize) + ")\n" +
@@ -144,9 +146,9 @@ public class PieceControl : MonoBehaviour {
 			return false;
 
 		/* 判断位置 */
-		int posX = Mathf.RoundToInt (transform.localPosition.x);
-		int posZ = Mathf.RoundToInt (transform.localPosition.z);
-		if ((posX % 2 == 0) || (posZ % 2 == 0))
+		posX = Mathf.RoundToInt (transform.localPosition.x);
+		posZ = Mathf.RoundToInt (transform.localPosition.z);
+		if ((posX % 2 == chessSize % 2) || (posZ % 2 == chessSize % 2))
 			return false;
 
 		/* 判断是否有栅栏 */

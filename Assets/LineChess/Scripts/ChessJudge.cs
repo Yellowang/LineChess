@@ -5,14 +5,22 @@ using UnityEngine;
 public sealed class ChessJudge 
 { 
 	private static ChessJudge instance = new ChessJudge();    // 创建ChessJudge的一个对象
-	private int chessSize = 6;     // 棋盘大小 大小2~6
+	public int chessSize = 4;     // 棋盘大小 大小2~6
 	private int[, ] chess;
 	private int playerPosX, playerPosZ, AIPosX, AIPosZ;        // 棋子位置（数组下标）
 	private bool round;		// 每控制一次时改变真假，只有和PieceControl中的first真假相同，方可移动
 
 	/* private构造函数，并初始化属性 */
 	private ChessJudge(){
+		resetChess ();
+	}    
 
+	/* 获取唯一可用的对象 */
+	public static ChessJudge getSingleInstance(){
+		return instance;
+	}
+
+	public void resetChess() {
 		chess = new int[2 * chessSize + 1, 2 * chessSize + 1];
 		playerPosX = 1;
 		playerPosZ = 1;
@@ -34,15 +42,10 @@ public sealed class ChessJudge
 		/* 围栏 */
 		for (int i = 1; i < chessSize * 2 + 1; i += 2) {
 			chess [i, 0] = 1;
-			chess [i, 12] = 1;
+			chess [i, 2 * chessSize] = 1;
 			chess [0, i] = 1;
-			chess [12, i] = 1;
+			chess [2 * chessSize, i] = 1;
 		}
-	}    
-
-	/* 获取唯一可用的对象 */
-	public static ChessJudge getSingleInstance(){
-		return instance;
 	}
 
 	/* 判断游戏结果，胜负相对于玩家1来说 */

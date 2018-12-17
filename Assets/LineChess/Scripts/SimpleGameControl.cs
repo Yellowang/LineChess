@@ -11,10 +11,13 @@ using UnityEngine.UI;
  */
 public class SimpleGameControl : MonoBehaviour {
 
+	ChessJudge cj = ChessJudge.getSingleInstance();
+
 	/* 加载场景游戏 */
 	public void loadGameSence() {
 
 		string currentSence = SceneManager.GetActiveScene ().name;
+		cj.resetChess ();
 
 		if(currentSence.Equals("StartInterface"))
 			SceneManager.LoadScene("Loading");
